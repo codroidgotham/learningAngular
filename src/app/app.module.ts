@@ -7,6 +7,7 @@ import { CardComponent } from './card/card.component';
 import { HighlightedDirective } from './directives/highlighted.directive';
 import { NgxUnlessDirective } from './directives/ngx-unless.directive';
 import { HeightDirective } from './directives/height.directive';
+import { StructuralDirective } from './directives/structural.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HeightDirective } from './directives/height.directive';
     CardComponent,
     HighlightedDirective,
     NgxUnlessDirective,
-    HeightDirective
+    HeightDirective,
+    StructuralDirective
   ],
   imports: [
     BrowserModule,
