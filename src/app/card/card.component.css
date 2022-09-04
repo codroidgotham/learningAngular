@@ -1,0 +1,10 @@
+.myclass{
+    border: 2px solid black;
+}
+.lessheight{
+    height: 136px;
+}
+.moreheight{
+    height: 160px;
+}
+.highlighted{border:5px solid black;}

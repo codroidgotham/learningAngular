@@ -1,0 +1,25 @@
+<div class="container" >
+ <!-- <button (click)="addCourse(mycourseval.value)"></button>
+  <input type="text" #mycourseval>-->
+  <ng-template let-coursename="description" #tmpname>
+    <h1>{{coursename}}</h1>
+  </ng-template>
+  <div *ngTemplateOutlet="tmpname;context:{description:arrCourses[0].description}"></div>
+  <div class="row">
+    <div class="col-lg-4"  *ngFor ="let c of arrCourses" >
+      <ng-template #mytemp>
+        <p>no image to display</p>
+      </ng-template>
+      <app-card
+  [course]="c" [tmplref]="mytemp">
+  <img question class="card-img-top" [src]="c.iconUrl"  alt="Card image cap" #myimg>
+  <p >i am image</p>
+  <h1>fuck you</h1>
+</app-card>
+    </div>
+  </div>
+
+  <!--<div *ngFor="let dumb of (dum$ | async) ">
+   <p>{{dumb.title}}</p>
+  </div>-->
+</div>
