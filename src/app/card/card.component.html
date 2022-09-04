@@ -1,4 +1,4 @@
-<!--[ngStyle]="{'background-color':'#00D7FF'}"-->
+
 <div class="card mb-4" (cardiac)="myfunc2($event)" [ngStyle]="{'background-color':'#00D7FF'}"  (myevent)="myfunc($event)" #topcontainer>
   <ng-content select=[question] *ngIf="course.iconUrl; else cardtmp"></ng-content>
   
