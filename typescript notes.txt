@@ -1,0 +1,343 @@
+strongly typed
+superset of js
+with declarations you dont need to specify type. with const declaration you must do initialization (for non object types only)
+need to declare a variable b4 using it
+js throws errors only at runtime no syntax error detection b4 running
+const is restricted to typescript
+ts can run at backend and frontend (requirement the js runtime)
+ts files still compile to js even if they have error. Js runtime will thorw error while execution
+tsc --noEmitOnError <filename> would avoid creating an erroneous js filename
+light http server : npm init -> generate package -> modify start script to lite-server -> create index.html -> npm start
+tsc --watch (compiles on every change)
+
+const -- constant variable an inital value but cannot be changed,scoped
+const declarations cannot be reassigned but the value can change 
+if const points to an object the object members can change values
+ex: const a="b";a="c" not allowed
+const obj={"k":1};obj={"k":5} not allowed
+const obj={"k":1}; obj.k=4; allowed
+
+
+let can change values ,scoped
+cant redeclare with let in same block
+cant redeclare using const
+both let and const compile to var
+can redeclare in smaller scope with let
+
+
+var are not scoped, supported but not recommended
+
+both double and single quotes for strings also backtick can be used
+when defining constant strings use quotes
+when concatenating strings with variables (string variables) use backticks 
+e.g. const title="physics"; console.log(`the tile of the book is ${title}`); such string with backticks are called template
+string literals
+
+
+when to use type  annotations? avoid them in first place, 
+when is it necessary? function arguments, compilation error would be unavailable, very little other places
+
+typescript is statistically typed either by type inference or by 
+once a type is assigned to a variable the type cannot be changed
+javascript on the other hand allows changing  type of variable
+typeof returns string
+objects are key value pairs {key:value,key:value} 
+objects can be nested
+Null and undefined ; no value assigned
+undefined is a special value of js runtime
+declared but not defined (unintentional) treated as a false in boll conditions
+null is intentional and it is falsy (value not assigned)
+null is not assigned by js runtime
+
+Optional chaining "?."
+and operator an alternative
+avoid redundacy//not an alternative to error handling
+Null Colaescing operator assigns optional values  "??" 
+
+array are type safe one type only
+string enums
+
+anytype avoid unless necessary 
+anytype variable can be assigned with any value (string, number, object, array etc)
+an array of anytype can contain all sorts of types
+never use it explicitly
+if we do not specify type of variables in function definition any type is assigned implictly
+avoid it by using --noImplicitAny flag while compiling
+
+union types
+multiple possible types iof a variable better than any
+let a:number | string="something
+a=100
+| is the union operator
+--strictNullChecks (explicitly  tell which variables can be null or not mention in the type declaration) 
+const type inference to lite4ral value instead of primitive type because value cannot be changed
+literal type
+restrict assignable values
+typescript type alias-> custom "type keyword followed by types separted by union opertaor" types can be literal and primitive 
+can be used to make type alias for objects (custom object types) but interfaces are preffered
+
+in enums, objects and arrays we use commas in interfaces we use ;
+properties defined in interfaces are madatory
+for optional properties use a question mark in interface
+for readonly properties use "readonly before a property in interface
+property modifiers can be used with both type aliases and interfaces
+for objects interfaces are preffered over type aliases
+interfacesare extendible type aliases are not
+use type assertions only when u know more than the compiler
+instead of using as we can also use angle bracket notation
+
+while arrays and objects are generally created with constants values can change.
+this can be stooped by using Object.freeze(x) where x is the array or object name but it works in strict mode only
+arrays can be concatenated using arr1.concat(arr2)
+if cond {a}else{b} can be written as cond?a:b it is called ternary operator
+rest parameter (...args)
+... can spread array into comma separated values
+while using objects remember this link
+https://mathiasbynens.be/notes/javascript-properties
+Destructuring assignment is special syntax introduced in ES6, for neatly assigning values taken directly from an object.
+destructuring on array uses [] while on objects uses {}
+object literal declaration
+const createPerson = (name, age, gender) => ({name,age,gender}); can be used as createPerson("a"."b","c");
+in a js class convention of private variable is to use _ before it
+export default for only one export can export const,let or var
+importing default exports does not require {}
+creating promise---- const ,promisename=new Promise((reject,resolve)=>{<call reject and resolve>});
+promisename.then((param)=>{do something with the param;});here param holds whatever was passed to resolve above
+promise.catch((param)=>{do something with the param;});here param holds whatever was passed to reject above
+  
+re-export: export the import helps make a barrel first and then import them
+if reexport file is named index.ts we dont need to specify file name in from part of the import just directory name would do
+import * imports all but as is to be used
+difference between arrow function and function declared with function keyword; the "this" context of ever function made with function keyword is separate
+arr splice method modifies the array and returns a new array of removed element
+arr slice gets a part of array and returns it as a new aray. does not change the orignal array
+Array.prototype.pop()
+Array.prototype.push()
+Array.prototype.shift()
+Array.prototype.unshift()
+Array.prototype.reverse()
+Array.prototype.sort()
+Array.prototype.splice()
+Slightly confusingly, arrays also have some methods that don’t mutate the original array, but return a new array instead:
+
+Array.prototype.slice()
+Array.prototype.concat()
+Array.prototype.map()
+Array.prototype.filter()
+
+common js 
+
+we caN ADD properties to objects dynamically in js but this cant be done in typescript
+due to type assertions
+once we define object it gets a type inferred and that is bopund to it 
+function type can be defined as type kk=(ar:typeofarg)=>return type;
+as function is an object we can use interface as follows for the above purpose
+interface myfunc{
+(argname:typeofarg):return type;
+}
+no enums in js
+any is assignable to anything in addition to the ability that it can be assigned anytype (using any u opt out of type checking)
+
+**************************************************Angular**********************************************************
+own html tags
+created by using component directive
+{{}} interpolation syntax,anything inside these mustaches will be a javascript evaluated in context of respective model/component.ts
+surround html tag attributes with [] e.g instead of value use [value]. set it to the data from the model.(enclose in doublequotes) works without quotes as well
+on an elemet in template/view we can add templatereference using syntax #<nameof reference> this will give ur model access to html elemets in its template
+view refreshed by angular on changes only parts changed + automatic code escape
+events like onclick etc can be added to elements by using (click) version and can be assigned to component functions 
+
+*ngFor let course of courses;index as i;first as isFirst;last as isLast special variables index and first provided by ngFor
+ngClass add style conditionaly
+[ngswitch]
+*ngSwitchCase
+*ngSwitchDefault
+angilar pipr
+date pipe
+*ngIf ="boolean; else template literal"
+[ngClass]="['class1','class2']"
+[ngClass]='class1 class2'
+[ngClass]={'class1':true,'class2':true}
+
+
+---Built-in structural directives---
+Structural directives are responsible for HTML layout. 
+They shape or reshape the DOM's structure, typically by adding,
+removing, and manipulating the host elements to which they are attached.
+
+---Built-in attribute directives---
+Attribute directives listen to and modify the behavior of other HTML elements,
+ attributes, properties, and components.
+
+[ngSwitch]
+*ngSwitchCase
+*ngDefaultCase
+
+ng-container will help keep page light weight
+act as container
+
+ngStyle
+[style.text-decoraton]="'underline'" we will require multiple such attributes for each style component
+instead we can use [ngStyle]=<configuration object> instead of configuration object we can pass a function
+which returns an object
+
+date pipe
+{{property | date : 'MM/dd/yy'}}
+uppercase lowercase titlecase
+number pipe takes args n.o-m n digits before decimal,
+ o min number of digits after decimal, m max number of digits after decimal
+currency pipe takes currency like EUR GBP as args
+percentage
+
+json pipe
+keyvalue
+
+View Child Decorator
+Template querying
+
+@ViewChild(<Classcomponentname>)
+name of a vraible:classname
+ 
+ @ViewChild('templaterefname')
+ name of a vraible:classname
+ 
+ plain htmlelemnt
+ 
+ @ViewChild('Element')
+name of a vraible:ElementRef
+
+ 
+ 
+Lifecycle Hooks
+Hook:In programming, a hook is a 
+place and usually an interface provided in packaged code that allows a programmer to insert customized programming. 
+
+Observable are just that — things you wish to observe and take action on. Angular uses the Observer pattern which simply means
+ — Observable objects are registered, and other objects observe (in Angular using the subscribe method) them and take action when
+ the observable object is acted on in some way. They are similar to promises, but with some differences. Promises execute once 
+ and then are done. Observable continue to be observed after the event occurs. Observable can also be cancelled
+ (you can stop observing an object during runtime). Promises cannot be cancelled — which makes sense, since you’re only
+ executing the promise one time.
+ 
+Afterlifeinit hook
+do not change data in model in the hook function synchronously
+local template querying mechanism
+
+Query list changes is an  observable
+subscribe to it
+ both viewchild and viewchildren querying mechanism can only see inside the component but not inside ist children
+ native dom element of a component can be accessed using read:ElementRef
+ 
+ ng-template tag for else of ngIf
+ passing an html content inside the starting and ending tag of component the same content can be displayed 
+ inside template of the component by using ng-content tag
+ 
+ similar to viewchild a query ContentChild can be use to select anything within
+ ng content tag
+ 
+ one can use css class name or component class name to get content inside ng-content
+ 
+ ng-template is not available by default
+ only available if referenced
+ 
+ Multi-slot content projection
+A component can have multiple slots. Each slot can specify a CSS
+ selector that determines which content goes into that slot.
+ This pattern is referred to as multi-slot content projection. 
+ With this pattern, you must specify where you want the projected
+ content to appear. You accomplish this task by using the select 
+ attribute of <ng-content>.
+
+To create a component that uses multi-slot content projection:
+
+Create a component.
+
+In the template for your component, add an <ng-content>
+ element where you want the projected content to appear.
+
+Add a select attribute to the <ng-content> elements.
+ Angular supports selectors for any combination of tag name,
+ attribute, CSS class, and the :not pseudo-class.
+
+we can make a template like below
+<ng-template #templatename>
+	
+</ng-template>
+
+add a vraibale to template as follows
+<ng-template let-coursename #templatename>
+	
+</ng-template>
+add another variable
+<ng-template let-coursename let-price #templatename>
+	<h1> price of course is {{coursename}}
+</ng-template>
+
+instantiate a template
+<div *ngTemplateOutlet="templatename">
+</div>
+
+now coursename wont show anything so we can pass the value to coursename variable as follows
+<div *ngTemplateOutput="templatename; context:{name:'nameofcourse'}">
+</div>
+
+now change the template as follows:
+<ng-template let-coursename="name" let-price #templatename>
+	<h1> price of course is {{coursename}}
+</ng-template>
+
+directive will be applied to host element
+host binding directive
+@HostBinding('className')
+get cssClasses(){
+return <className>}
+@HostBinding('class.highlighted')
+get cssClasses(){
+return <className>}
+@HostBinding('style.border')
+  get cssClasses(){
+    return "1px solid black";
+  }
+  can write to dom properties and attributes
+
+  
+angular structural directives
+start with *
+*ngIf
+add or remove elements
+ the star syntax for example for *ngIf does below
+ it wraps everything we want our ngif to be applied on in an ng-template
+ and ngIf is used as an attribute directive like this [ngIf]="expression" expression is remains same
+ 
+ 
+ 
+ 
+ <input style="{background-color:black;}">
+ <input [style.background-color="'black'"]>
+ <input [ngStyle]={'background':'color'}>
+	<input [class.highlighted]="true">
+	<input [class]="">
+	<input [ngClass]="onclass()"
+onclass()
+{
+if(cond){
+return {}}
+}
+
+
+
+
+structural directive dependencies templattref and viewcontainerref inject them
+set function needed for using the structural directive
+the set should be named exatclay as selector
+one can use viewcontainerref.createembeddedview(templateref) to instantiate the related template
+or viewcontainerref.clear() to clear it
+
+
+if we want to style a component itself and not its inner content we cannot use the css in the corresponding css file
+In order to bypass that view encapsulation provides the :host css selector 
+as follows
+:host{
+color:blue
+}
+
