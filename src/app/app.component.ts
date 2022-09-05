@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NEVER, Observable } from 'rxjs';
 import { COURSES } from 'src/db-data';
 import { Dummy } from './dummy';
 import { CardComponent } from './card/card.component';
 import { Course } from './course';
+import { CoursesServiceService } from './services/courses-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
   
 })
-export class AppComponent implements  AfterViewInit {
+export class AppComponent implements  AfterViewInit,OnInit {
 
   
   @ViewChildren(CardComponent)
@@ -20,7 +21,7 @@ export class AppComponent implements  AfterViewInit {
   maxheight=56;
   title = 'myapp1';
   arrCourses=COURSES as Course[];
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private cs:CoursesServiceService) {
     this.cards=new QueryList<CardComponent>();
   }
   ngAfterViewInit() {
@@ -47,6 +48,9 @@ export class AppComponent implements  AfterViewInit {
       
     }
     this.arrCourses.push(mycourse);
+  }
+  ngOnInit(): void {
+    console.log("here",this.cs)
   }
 
 }

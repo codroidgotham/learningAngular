@@ -4,6 +4,7 @@ import { Course } from '../course';
 import { Observable } from 'rxjs';
 import { Dummy } from '../dummy';
 import { HighlightedDirective } from '../directives/highlighted.directive';
+import { CoursesServiceService } from '../services/courses-service.service';
 
 
 
@@ -40,7 +41,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   innerdivheight:any;
   startDate:Date;
   price:number;
-  constructor() {
+  constructor(private cs:CoursesServiceService) {
     console.log(this.topc)
     this.startDate=new Date();
     this.price=9.99;
@@ -55,7 +56,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
     return 'moreheight'
   }
   ngOnInit(): void {
-    
+    console.log("here",this.cs)
   }
   giveStyle(){
     if (this.course.category=="BEGINNER"){
@@ -71,6 +72,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
     this.innerdivheight=this.divh?.nativeElement.offsetHeight;
     
   }
+  
   myfunc(val:boolean){
     console.log(val);
   }
