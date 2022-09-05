@@ -24,12 +24,16 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   @ViewChild('para')
   divh?:ElementRef
 
+  
+  
 
   @Output()
   cardiac=new EventEmitter();
 
   @Input()
-  course:any;
+  course?:any;
+
+  
 
   @Input()
   divheight?:number;
@@ -44,8 +48,14 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
     console.log(this.topc)
     this.startDate=new Date();
     this.price=9.99;
+    console.log(this.course?.category)
+    
     
   }
+
+ 
+
+
   myClassFun(){
     if (this.course.category=="BEGINNER")
     {return 'myclass';}
@@ -69,7 +79,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   ngAfterViewInit() {
     
     this.innerdivheight=this.divh?.nativeElement.offsetHeight;
-    
+   
   }
   myfunc(val:boolean){
     console.log(val);

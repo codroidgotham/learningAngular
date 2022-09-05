@@ -10,11 +10,11 @@
   <div class="card-body"  [class]="checkHeight()" #para >
     <!-- [class]="checkHeight()" -->
     <h5 class="card-title" [ngStyle]="giveStyle()">{{course.description | titlecase}}</h5>
-    <p  class="card-text"        >{{course.longDescription}} <b>Start Date:</b> {{startDate | date : 'dd-MM-YY'}} <b>Price:</b>
-      {{price | currency}}</p>
+    <p *appStructural="false" class="card-text"        >{{course.longDescription}} <b>Start Date:</b> {{startDate | date : 'dd-MM-YY'}} <b>Price:</b>
+      {{price | currency}} </p>
 
   </div>
-  <div class="card-body" (dblclick)="myname.ontoggle()" [ngSwitch]="course.category">
+  <div   class="card-body" (dblclick)="myname.ontoggle()" [ngSwitch]="course.category">
     <label *ngSwitchCase="'BEGINNER'" style="margin: auto 38%;font-family:sans-serif;color: black;">beginner</label>
     <label *ngSwitchCase="'ADVANCED'" style="margin: auto 38%;font-family:sans-serif;color: black;">advanced</label>
     <label *ngSwitchCase="'INTERMEDIATE'" style="margin: auto 38%;font-family:sans-serif;color: black;">intermediate</label>
