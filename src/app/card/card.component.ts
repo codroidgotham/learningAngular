@@ -42,7 +42,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   startDate:Date;
   price:number;
   constructor(private cs:CoursesServiceService) {
-    console.log(this.topc)
+    
     this.startDate=new Date();
     this.price=9.99;
     
@@ -56,7 +56,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
     return 'moreheight'
   }
   ngOnInit(): void {
-    console.log("here",this.cs)
+    
   }
   giveStyle(){
     if (this.course.category=="BEGINNER"){
