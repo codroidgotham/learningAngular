@@ -341,3 +341,81 @@ as follows
 color:blue
 }
 
+
+in order to apply styles to html content being passed to a component via content projection use the ngdeep modifiers
+e.g 
+.course-card::ng-deep .course-description{} now it will target any html content with class course-description
+inside the course card class
+
+:host-context(.classname) .classname
+
+
+Dependency Injection
+your class depends on a dependency
+It will be provided to your class
+You wont instantiate it
+Our class does not need to know where the dependency comes from, how it was created, does not even know the implementation details
+one instance for whole application
+
+
+
+course save button
+theres an input element 
+<input #myinp type="text">
+@Output('courseChanged')
+courseemmitter=new EventEmmitter()
+has an event (click)="somefunction()"
+course component has a function somefunction()
+somefunction(somestring:string) calls the event emmitter
+somefunction(somestring:string){
+	this.courseemmitter.emit({...this.course,somestring}) //remember somestring should be a property of course
+}
+
+now to get hold of this event at upper level
+in the appcomponent we subscribe to this event 
+(courseChanged)="save($event)" $event represents all the data that is being emmitted by courseChanged
+save(course:Course) is a function in appcomponent
+which calls the saveCourse method in our service 
+saveCourse method puts data and returns an observable in our save method 
+
+
+
+provider is what creates Dependency onbehalf of DIS
+provider gives a factory function 
+this factory function creates the dependency
+DIS calls this factory function
+
+
+Writing our own provider
+write the factory function for the dependency
+create an injection token
+classname is an automatic injection token
+providers:[{provide:nameof injectiontoken,useFactory:name of factory function,deps:[dependency of factory function]}]
+
+now where you are injecting add an @Inject(nameof Injection Token) 
+
+notice that classname can be used as a token 
+moreover instead of the factory function we can use the constructur so 
+
+we can do the provide things as follows as well
+providers:[{provide:className,useClass:className}]
+or providers:[className]
+plus we dont need to use @inject
+
+dep injection is hierarchical
+
+treeshakable
+should be ued for stateless services, singletons
+if service has a state its better to use the providers syntax
+smaller bundle
+
+if we dont have a provider for a dependency or are not sure if the dependency exists
+we can use @optional() before dependency injection in constructor to avoid compile and runtime errors
+if we have a private dependency of a component we dont want to come from parent we can use @Self() decorator
+this would not let u get di from parent component
+it will only inject the dependency if it is present in the providers
+if we want to force the hierarchy and want the dependecy to come from the parents use @skipSelf() decorator
+@Host decorator means that the dep being injected would be recieved from the host element
+
+
+change detection
