@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChildren,Inject } from '@angular/core';
 import { NEVER, Observable } from 'rxjs';
 import { COURSES } from 'src/db-data';
 import { User } from './interfaces/user';
@@ -7,10 +7,18 @@ import { Dummy } from './dummy';
 import { CardComponent } from './card/card.component';
 import { Course } from './course';
 import { CoursesServiceService } from './services/courses-service.service';
+const injTok=new InjectionToken<CoursesServiceService>("my token");
+const factoryMethod=(http:HttpClient)=>{
+  return new CoursesServiceService(http);
+}
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 
 })
 export class AppComponent implements AfterViewInit, OnInit {

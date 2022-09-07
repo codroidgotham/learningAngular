@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn:'root'
 })
 export class CoursesServiceService {
 
