@@ -77,4 +77,8 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   myfunc2(course1:Course){
     console.log(course1);
   }
+  changeTitle(val:string){
+    console.log(val)
+    this.course.description=val;
+  }
 }

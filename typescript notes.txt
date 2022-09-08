@@ -418,4 +418,20 @@ if we want to force the hierarchy and want the dependecy to come from the parent
 @Host decorator means that the dep being injected would be recieved from the host element
 
 
-change detection
+change detection after each event even on custom events
+checks all expressions 
+if change is detected it changes that accordingly
+recommended for most cases
+but for optimization
+onpush detection does nto work if exisitng input changes value (changing some property of input)
+if an altogether new input is passed (changing ref of input variable to completely new variable
+onpush monitors all @Inputs and observable streams with async pipe
+use async pipe
+dont mutate data directly
+
+performance optimization
+Multiple inputson components
+if input is not going to change we can use the attribute without []  brackets and add the value of attribute as it is 
+however it must be noted that we have to add an @Attribute('name of attribute') decorator while passing this to constructor
+also note that syntax without brackets works with @Input() as well but then we will be monitoring a change that may never occur at all
+

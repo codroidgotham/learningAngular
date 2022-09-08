@@ -23,5 +23,5 @@
     <button class="btn btn-primary" style="background-color: #0096FF;margin: auto 32%;"><span
         style="color: #72FFFF;font-family: sans-serif ;font-size: 1em;">View Course</span></button>
   </div>
-
+    <input type="text" [value]="course.description" (keyup)="changeTitle(mytext.value)" #mytext>
 </div>
