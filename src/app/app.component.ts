@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { NEVER, Observable } from 'rxjs';
 import { COURSES } from 'src/db-data';
 import { Dummy } from './dummy';
@@ -8,7 +8,8 @@ import { Course } from './course';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  
   
 })
 export class AppComponent implements  AfterViewInit {
@@ -48,5 +49,13 @@ export class AppComponent implements  AfterViewInit {
     }
     this.arrCourses.push(mycourse);
   }
-
+  changetitlefirst(){
+    console.log("i got 1here")
+    const newCourses:Course=this.arrCourses[9];
+    const myCourses:Course={...newCourses};
+    myCourses.description="New Value";
+    this.arrCourses[9]=myCourses;
+    //this.arrCourses[0].description="fuckyou";
+    //this.arrCourses[9].description="New Value";
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit, TemplateRef, Output,EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit, TemplateRef, Output,EventEmitter, AfterContentInit,ChangeDetectionStrategy } from '@angular/core';
 
 import { Course } from '../course';
 import { Observable } from 'rxjs';
@@ -7,10 +7,12 @@ import { HighlightedDirective } from '../directives/highlighted.directive';
 
 
 
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
@@ -80,5 +82,10 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   changeTitle(val:string){
     console.log(val)
     this.course.description=val;
+  }
+  changedesc(){
+    console.log("i got here")
+    
+    this.course.description="myvalue";
   }
 }
