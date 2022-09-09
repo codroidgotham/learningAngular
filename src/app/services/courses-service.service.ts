@@ -12,7 +12,7 @@ export class CoursesServiceService {
    }
 
    getfromApi(){
-    return this.http.get("https://jsonplaceholder.typicode.com/users");
+    return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users");
    }
 
 

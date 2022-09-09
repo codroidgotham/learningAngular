@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit, TemplateRef, Output,EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit, TemplateRef, Output,EventEmitter, AfterContentInit,ChangeDetectionStrategy } from '@angular/core';
 
 import { Course } from '../course';
 import { Observable } from 'rxjs';
@@ -11,7 +11,8 @@ import { CoursesServiceService } from '../services/courses-service.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
+  //changeDetection:ChangeDetectionStrategy.OnPush
 })
 
 export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
@@ -25,6 +26,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   @ViewChild('para')
   divh?:ElementRef
 
+  @Input() checking?:string
 
   @Output()
   cardiac=new EventEmitter();

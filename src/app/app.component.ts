@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChildren,Inject } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, InjectionToken, OnInit, QueryList, ViewChildren,Inject, ChangeDetectionStrategy } from '@angular/core';
 import { NEVER, Observable } from 'rxjs';
 import { COURSES } from 'src/db-data';
 import { User } from './interfaces/user';
@@ -7,6 +7,8 @@ import { Dummy } from './dummy';
 import { CardComponent } from './card/card.component';
 import { Course } from './course';
 import { CoursesServiceService } from './services/courses-service.service';
+
+
 const injTok=new InjectionToken<CoursesServiceService>("my token");
 const factoryMethod=(http:HttpClient)=>{
   return new CoursesServiceService(http);
@@ -18,11 +20,11 @@ const factoryMethod=(http:HttpClient)=>{
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-
+  // changeDetection:ChangeDetectionStrategy.OnPush
 
 })
 export class AppComponent implements AfterViewInit, OnInit {
-
+  checker:string="initial string"
   haveGot:any;
   @ViewChildren(CardComponent)
   cards: QueryList<CardComponent>;
@@ -40,7 +42,13 @@ export class AppComponent implements AfterViewInit, OnInit {
         
       //   this.haveGot.push(v );
       // }}
-      (value)=>this.haveGot=value
+      (value)=>
+      {
+        for (let i=0;i<value.length;i++){
+          this.haveGot.push(value[i]);
+        }
+      }
+      //this.haveGot=value
     )
     console.log("immediate",this.haveGot.length);
     setTimeout(()=>console.log("wait",this.haveGot.length),3000)  
@@ -77,5 +85,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     console.log(this.haveGot)
   }
-
+changeto(){
+  this.checker="newval";
+}
 }
