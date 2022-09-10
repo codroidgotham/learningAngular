@@ -435,3 +435,12 @@ if input is not going to change we can use the attribute without []  brackets an
 however it must be noted that we have to add an @Attribute('name of attribute') decorator while passing this to constructor
 also note that syntax without brackets works with @Input() as well but then we will be monitoring a change that may never occur at all
 
+OnPush is defined this way.
+
+It triggers change detection
+
+when a DOM event the component listens to was received
+when the |async pipe receives a new event
+when an @Input() was updated by change detection.
+when explicitly registering the component to be checked the next change detection turn using ChangeDetectorRef::markForCheck
+ChangeDetectionStrategy.Default triggers change detection for every async callback called within Angulars zone (every DOM even listened to within the Angular application, every Observable event or completed Promise, setTimeout, ...)
