@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit, TemplateRef, Output,EventEmitter, AfterContentInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit, TemplateRef, Output,EventEmitter, AfterContentInit,ChangeDetectionStrategy, Attribute } from '@angular/core';
 
 import { Course } from '../course';
 import { Observable } from 'rxjs';
@@ -26,7 +26,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   @ViewChild('para')
   divh?:ElementRef
 
-  @Input() checking?:string
+
 
   @Output()
   cardiac=new EventEmitter();
@@ -43,7 +43,7 @@ export class CardComponent implements OnInit, AfterViewInit,AfterContentInit {
   innerdivheight:any;
   startDate:Date;
   price:number;
-  constructor(private cs:CoursesServiceService) {
+  constructor(private cs:CoursesServiceService,@Attribute('type') public type:string ) {
     
     this.startDate=new Date();
     this.price=9.99;
